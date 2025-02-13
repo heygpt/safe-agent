@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Safe Agent Conversation",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "_id": {
+        "type": "string",
+        "format": "uuid",
+        "coerce": true
+      },
+      "chat_id": {
+        "type": "object",
+        "properties": {
+          "$share": {
+            "type": "string"
+          }
+        },
+        "required": ["$share"]
+      },
+      "messages": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "content": {
+              "type": "object",
+              "properties": {
+                "$share": {
+                  "type": "string"
+                }
+              },
+              "required": ["$share"]
+            },
+            "createdAt": {
+              "type": "object",
+              "properties": {
+                "$share": {
+                  "type": "string"
+                }
+              },
+              "required": ["$share"]
+            },
+            "id": {
+              "type": "object",
+              "properties": {
+                "$share": {
+                  "type": "string"
+                }
+              },
+              "required": ["$share"]
+            },
+            "role": {
+              "type": "object",
+              "properties": {
+                "$share": {
+                  "type": "string"
+                }
+              },
+              "required": ["$share"]
+            },
+            "revisionId": {
+              "type": "object",
+              "properties": {
+                "$share": {
+                  "type": "string"
+                }
+              },
+              "required": ["$share"]
+            }
+          },
+          "required": ["content", "createdAt", "id", "role"]
+        },
+        "minItems": 1
+      }
+    },
+    "required": ["_id", "chat_id", "messages"]
+  }
+}
