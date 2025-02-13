@@ -31,5 +31,9 @@
     "agents",
     "web3"
   ],
-  "packageManager": "pnpm@9.14.2"
+  "packageManager": "pnpm@9.14.2",
+  "dependencies": {
+    "@privy-io/server-auth": "^1.18.7",
+    "@privy-io/wagmi": "^1.0.3"
+  }
 }
