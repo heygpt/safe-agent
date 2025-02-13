@@ -1,0 +1,11 @@
+{
+  "name": "safe-agent-core",
+  "version": "1.0.0",
+  "description": "Safe Agent Core Module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SAFE Agent Team",
+  "license": "BUSL-1.1"
+}
