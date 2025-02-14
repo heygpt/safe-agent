@@ -1,0 +1,29 @@
+{
+  "name": "@safe-agent/safe",
+  "version": "1.0.0",
+  "description": "Safe wallet plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Safe Agent Team",
+  "license": "BUSL-1.1",
+  "dependencies": {
+    "@ensofinance/sdk": "1.0.13",
+    "@langchain/core": "0.3.40",
+    "@langchain/langgraph": "0.2.46",
+    "@privy-io/server-auth": "^1.18.7",
+    "@safe-global/api-kit": "2.5.9",
+    "@safe-global/protocol-kit": "5.2.2",
+    "@safe-global/safe-core-sdk-types": "5.1.0",
+    "@safe-global/sdk-starter-kit": "1.1.5",
+    "@safe-global/types-kit": "1.0.2",
+    "ai": "^4.1.26",
+    "canonicalize": "2.0.0",
+    "crypto": "1.0.1",
+    "decimal.js": "10.5.0",
+    "dotenv": "^16.4.7",
+    "viem": "^2.23.2",
+    "zod": "^3.24.1"
+  }
+}
