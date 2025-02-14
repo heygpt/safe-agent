@@ -1,28 +1,29 @@
 #!/usr/bin/env node
+import require$$0$2 from 'node:events';
+import require$$1$3 from 'node:child_process';
+import require$$2$2 from 'node:path';
+import require$$3 from 'node:fs';
+import process$2 from 'node:process';
+import require$$0$3 from 'fs';
+import path$2 from 'path';
+import os$1 from 'os';
+import crypto$4 from 'crypto';
+import { fileURLToPath } from 'url';
 import { loadPackageDefinition, Server, ServerCredentials } from '@grpc/grpc-js';
 import * as protoLoader from '@grpc/proto-loader';
-import cluster from 'cluster';
-import crypto$4 from 'crypto';
-import { Resolver } from 'dns/promises';
-import { EventEmitter as EventEmitter$3, setMaxListeners as setMaxListeners$1 } from 'events';
-import require$$0$3 from 'fs';
 import fs$2 from 'fs/promises';
-import net from 'net';
 import { Buffer as Buffer$1 } from 'node:buffer';
-import require$$1$3 from 'node:child_process';
-import nc__default, * as nc from 'node:crypto';
-import require$$0$2 from 'node:events';
-import require$$3 from 'node:fs';
+import * as nc from 'node:crypto';
+import nc__default from 'node:crypto';
+import { promisify } from 'util';
 import { isIP as isIP$1, isIPv4, isIPv6 } from 'node:net';
-import os$2 from 'node:os';
-import require$$2$2 from 'node:path';
-import process$2 from 'node:process';
+import { setMaxListeners as setMaxListeners$1, EventEmitter as EventEmitter$3 } from 'events';
+import cluster from 'cluster';
+import net from 'net';
+import { Resolver } from 'dns/promises';
 import tty from 'node:tty';
 import util$5 from 'node:util';
-import os$1 from 'os';
-import path$2 from 'path';
-import { fileURLToPath } from 'url';
-import { promisify } from 'util';
+import os$2 from 'node:os';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -5865,7 +5866,7 @@ var base64$3 = {};
 	 */
 	base64.test = function test(string) {
 	    return /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(string);
-	};
+	}; 
 } (base64$3));
 
 var eventemitter = EventEmitter$1;
@@ -6401,7 +6402,7 @@ var utf8$2 = {};
 	        }
 	    }
 	    return offset - start;
-	};
+	}; 
 } (utf8$2));
 
 var pool_1 = pool$1;
@@ -7102,7 +7103,7 @@ function requireMinimal () {
 		        function Buffer_allocUnsafe(size) {
 		            return new Buffer(size);
 		        };
-		};
+		}; 
 	} (minimal$1));
 	return minimal$1;
 }
@@ -8303,7 +8304,7 @@ Service.prototype.end = function end(endedByRPC) {
 	 * @returns {undefined}
 	 */
 
-	rpc.Service = service;
+	rpc.Service = service; 
 } (rpc));
 
 var roots = {};
@@ -8343,7 +8344,7 @@ var roots = {};
 	}
 
 	// Set up buffer utility according to the environment
-	configure();
+	configure(); 
 } (indexMinimal));
 
 var minimal = indexMinimal;
@@ -13182,19 +13183,19 @@ var sha256$4 = /*#__PURE__*/Object.freeze({
 
 /*!
  * MIT License
- *
+ * 
  * Copyright (c) 2017-2024 Peculiar Ventures, LLC
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -13202,7 +13203,7 @@ var sha256$4 = /*#__PURE__*/Object.freeze({
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *
+ * 
  */
 
 const ARRAY_BUFFER_NAME = "[object ArrayBuffer]";
@@ -13679,23 +13680,23 @@ function padNumber(inputNumber, fullLength) {
  * Copyright (c) 2014, GMO GlobalSign
  * Copyright (c) 2015-2022, Peculiar Ventures
  * All rights reserved.
- *
+ * 
  * Author 2014-2019, Yury Strozhevsky
- *
+ * 
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
- *
+ * 
  * * Redistributions of source code must retain the above copyright notice, this
  *   list of conditions and the following disclaimer.
- *
+ * 
  * * Redistributions in binary form must reproduce the above copyright notice, this
  *   list of conditions and the following disclaimer in the documentation and/or
  *   other materials provided with the distribution.
- *
+ * 
  * * Neither the name of the copyright holder nor the names of its
  *   contributors may be used to endorse or promote products derived from
  *   this software without specific prior written permission.
- *
+ * 
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -13706,7 +13707,7 @@ function padNumber(inputNumber, fullLength) {
  * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
+ * 
  */
 
 
@@ -24020,7 +24021,7 @@ Denque.prototype._shrinkArray = function _shrinkArray() {
 /**
  * Find the next power of 2, at least 4
  * @private
- * @param {number} num
+ * @param {number} num 
  * @returns {number}
  */
 Denque.prototype._nextPowerOf2 = function _nextPowerOf2(num) {
@@ -27158,7 +27159,7 @@ class GossipSub extends TypedEventEmitter {
         // check if we need to get more peers, which we randomly select
         if (toAdd.size < this.opts.D) {
             const fanoutCount = toAdd.size;
-            const newPeers = this.getRandomGossipPeers(topic, this.opts.D, (id) =>
+            const newPeers = this.getRandomGossipPeers(topic, this.opts.D, (id) => 
             // filter direct peers and peers with negative score
             !toAdd.has(id) && !this.direct.has(id) && this.score.score(id) >= 0 && backoff?.has(id) !== true);
             newPeers.forEach((peer) => {
@@ -28938,7 +28939,7 @@ chacha20$2.chacha20StreamXOR = chacha20StreamXOR;
 	Object.defineProperty(exports, "chacha20StreamXOR", { enumerable: true, get: function () { return chacha20_1.chacha20StreamXOR; } });
 	var wasm_1 = wasm$1;
 	Object.defineProperty(exports, "newInstance", { enumerable: true, get: function () { return wasm_1.newInstance; } });
-
+	
 } (src));
 
 var lib$1 = {};
@@ -29288,7 +29289,7 @@ sha256$1.default = SHA256;
 	    output.set(outputUint8Array);
 	    return output;
 	}
-
+	
 } (lib$1));
 
 // https://github.com/electron/electron/issues/2288
@@ -32390,7 +32391,7 @@ class Noise {
     /**
      * Perform XX handshake as initiator.
      */
-    async performHandshakeInitiator(connection,
+    async performHandshakeInitiator(connection, 
     // TODO: pass private key in noise constructor via Components
     privateKey, remoteIdentityKey, options) {
         let result;
@@ -36920,7 +36921,7 @@ var eventemitter3 = {exports: {}};
 	//
 	{
 	  module.exports = EventEmitter;
-	}
+	} 
 } (eventemitter3));
 
 var eventemitter3Exports = eventemitter3.exports;
@@ -39985,7 +39986,7 @@ var murmurHash3js = {exports: {}};
 	        exports.murmurHash3 = library;
 
 	    }
-	})();
+	})(); 
 } (murmurHash3js, murmurHash3js.exports));
 
 const MAX_FINGERPRINT_SIZE = 64;
@@ -50172,7 +50173,7 @@ consts.AEAD_TAG_LENGTH = 16;
 	        throw new Error("Not implemented");
 	    }
 	};
-	exports.ephemeralKeySize = ephemeralKeySize;
+	exports.ephemeralKeySize = ephemeralKeySize; 
 } (config));
 
 var keys = {};
@@ -50332,7 +50333,7 @@ var hex = {};
 	};
 	exports.remove0x = remove0x;
 	var decodeHex = function (hex) { return (0, utils_1.hexToBytes)((0, exports.remove0x)(hex)); };
-	exports.decodeHex = decodeHex;
+	exports.decodeHex = decodeHex; 
 } (hex));
 
 (function (exports) {
@@ -50404,7 +50405,7 @@ var hex = {};
 	    var scalar = curve.utils.getExtendedPublicKey(sk).scalar;
 	    var point = curve.ExtendedPoint.fromHex(pk).multiply(scalar);
 	    return point.toRawBytes();
-	};
+	}; 
 } (elliptic$3));
 
 var hash$2 = {};
@@ -50431,7 +50432,7 @@ var require$$2 = /*@__PURE__*/getAugmentedNamespace(sha256$4);
 	    }
 	    return (0, exports.deriveKey)(utils_1.concatBytes.apply(undefined, parts));
 	};
-	exports.getSharedKey = getSharedKey;
+	exports.getSharedKey = getSharedKey; 
 } (hash$2));
 
 var symmetric = {};
@@ -50677,7 +50678,7 @@ node.chacha20 = chacha20;
 	    var tag = encrypted.subarray(0, tagLength);
 	    var cipherText = encrypted.subarray(tagLength);
 	    return cipher.decrypt((0, utils_1.concatBytes)(cipherText, tag));
-	}
+	} 
 } (symmetric));
 
 (function (exports) {
@@ -50699,7 +50700,7 @@ node.chacha20 = chacha20;
 	__exportStar(elliptic$3, exports);
 	__exportStar(hash$2, exports);
 	__exportStar(hex, exports);
-	__exportStar(symmetric, exports);
+	__exportStar(symmetric, exports); 
 } (utils$4));
 
 var PublicKey$1 = {};
@@ -50846,7 +50847,7 @@ PrivateKey$1.PrivateKey = PrivateKey;
 	var PrivateKey_1 = PrivateKey$1;
 	Object.defineProperty(exports, "PrivateKey", { enumerable: true, get: function () { return PrivateKey_1.PrivateKey; } });
 	var PublicKey_1 = PublicKey$1;
-	Object.defineProperty(exports, "PublicKey", { enumerable: true, get: function () { return PublicKey_1.PublicKey; } });
+	Object.defineProperty(exports, "PublicKey", { enumerable: true, get: function () { return PublicKey_1.PublicKey; } }); 
 } (keys));
 
 (function (exports) {
@@ -50917,7 +50918,7 @@ PrivateKey$1.PrivateKey = PrivateKey;
 	    decodeHex: utils_2.decodeHex,
 	    getValidSecret: utils_2.getValidSecret,
 	    remove0x: utils_2.remove0x,
-	};
+	}; 
 } (dist));
 
 function getTypes(types) {
@@ -55490,7 +55491,7 @@ RetryOperation.prototype.mainError = function() {
 	    }.bind(obj, original);
 	    obj[method].options = options;
 	  }
-	};
+	}; 
 } (retry$2));
 
 var retry = retry$2;
@@ -62551,7 +62552,7 @@ function requireBn () {
 		    var res = this.imod(a._invmp(this.m).mul(this.r2));
 		    return res._forceRed(this);
 		  };
-		})(module, commonjsGlobal);
+		})(module, commonjsGlobal); 
 	} (bn));
 	return bn.exports;
 }
@@ -62640,7 +62641,7 @@ function requireUtils$2 () {
 		    return toHex(arr);
 		  else
 		    return arr;
-		};
+		}; 
 	} (utils$1));
 	return utils$1;
 }
@@ -62770,7 +62771,7 @@ function requireUtils$1 () {
 		function intFromLE(bytes) {
 		  return new BN(bytes, 'hex', 'le');
 		}
-		utils.intFromLE = intFromLE;
+		utils.intFromLE = intFromLE; 
 	} (utils$2));
 	return utils$2;
 }
@@ -64883,7 +64884,7 @@ function requireCurve () {
 		curve.base = requireBase();
 		curve.short = requireShort();
 		curve.mont = requireMont();
-		curve.edwards = requireEdwards();
+		curve.edwards = requireEdwards(); 
 	} (curve));
 	return curve;
 }
@@ -66197,7 +66198,7 @@ function requireHash () {
 		hash.sha224 = hash.sha.sha224;
 		hash.sha384 = hash.sha.sha384;
 		hash.sha512 = hash.sha.sha512;
-		hash.ripemd160 = hash.ripemd.ripemd160;
+		hash.ripemd160 = hash.ripemd.ripemd160; 
 	} (hash$1));
 	return hash$1;
 }
@@ -67201,7 +67202,7 @@ function requireCurves () {
 		    '483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8',
 		    pre,
 		  ],
-		});
+		}); 
 	} (curves));
 	return curves;
 }
@@ -68249,7 +68250,7 @@ function requireElliptic$2 () {
 
 		// Protocols
 		elliptic.ec = requireEc();
-		elliptic.eddsa = requireEddsa();
+		elliptic.eddsa = requireEddsa(); 
 	} (elliptic$2));
 	return elliptic$2;
 }
@@ -69480,7 +69481,7 @@ function parseAbi(signatures) {
  * Useful for extracting overridden actions from a client (ie. if a consumer
  * wants to override the `sendTransaction` implementation).
  */
-function getAction(client, actionFn,
+function getAction(client, actionFn, 
 // Some minifiers drop `Function.prototype.name`, or replace it with short letters,
 // meaning that `actionFn.name` will not always work. For that case, the consumer
 // needs to pass the name explicitly.
@@ -70784,7 +70785,7 @@ class LruMap extends Map {
 }
 
 const checksumAddressCache = /*#__PURE__*/ new LruMap(8192);
-function checksumAddress(address_,
+function checksumAddress(address_, 
 /**
  * Warning: EIP-1191 checksum addresses are generally not backwards compatible with the
  * wider Ethereum ecosystem, meaning it will break when validated against an application/tool
@@ -70813,7 +70814,7 @@ chainId) {
     checksumAddressCache.set(`${address_}.${chainId}`, result);
     return result;
 }
-function getAddress(address,
+function getAddress(address, 
 /**
  * Warning: EIP-1191 checksum addresses are generally not backwards compatible with the
  * wider Ethereum ecosystem, meaning it will break when validated against an application/tool
@@ -74580,7 +74581,7 @@ async function estimateGas(client, args) {
     try {
         const { accessList, authorizationList, blobs, blobVersionedHashes, blockNumber, blockTag, data, gas, gasPrice, maxFeePerBlobGas, maxFeePerGas, maxPriorityFeePerGas, nonce, value, stateOverride, ...rest } = (await prepareTransactionRequest(client, {
             ...args,
-            parameters:
+            parameters: 
             // Some RPC Providers do not compute versioned hashes from blobs. We will need
             // to compute them.
             account?.type === 'local' ? undefined : ['blobVersionedHashes'],

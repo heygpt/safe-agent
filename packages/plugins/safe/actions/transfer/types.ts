@@ -9,7 +9,7 @@ export type TransferSchemaType = typeof TransferInput;
 export type TransferArgumentsType = z.infer<TransferSchemaType>;
 
 export type TransferResultBodyType = {
-  transactionHash: string;
+  safeTransactionHash: string;
   symbol: string;
   signature?: SafeSignature;
 };

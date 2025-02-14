@@ -5,10 +5,10 @@ package p2p;
 service P2PNode {
   // Connect to the P2P network and receive events
   rpc Connect(ConnectRequest) returns (stream P2PEvent);
-
+  
   // Send a message to a peer
   rpc SendMessage(Message) returns (SendResult);
-
+  
   // Stop the P2P node
   rpc Stop(StopRequest) returns (StopResponse);
 }
@@ -60,4 +60,4 @@ message SendResult {
 
 message StopRequest {}
 
-message StopResponse {}
+message StopResponse {} 

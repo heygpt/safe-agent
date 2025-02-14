@@ -14,7 +14,7 @@ export const queryBirdeye = async <T>(
 
   const response = await fetch(url.toString(), {
     headers: {
-      'X-API-KEY': process.env.BIRDEYE_API_KEY || '',
+      'X-API-KEY': process.env.NEXT_PUBLIC_BIRDEYE_API_KEY || '',
       accept: 'application/json',
       'x-chain': chain,
     },

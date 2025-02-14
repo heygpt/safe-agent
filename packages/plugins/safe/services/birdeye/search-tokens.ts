@@ -21,7 +21,7 @@ export const searchTokens = async ({
 }: SearchTokensParams): Promise<SearchResponse> => {
   const params: Record<string, string | number> = {
     keyword,
-    chain: 'solana',
+    chain: BIRDEYE_CHAIN_MAP[chainId],
     target: 'token',
     sort_by: 'liquidity',
     sort_type: 'desc',

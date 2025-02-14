@@ -23,7 +23,7 @@ export async function getBalance(
     return {
       message: `Balances for wallet ${wallet.getOnchainIdentifier()}:\n${balance}`,
       body: {
-        balance: balance,
+        balance: Number(balance),
       },
     };
   } catch (error) {

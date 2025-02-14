@@ -8,7 +8,7 @@ export type GetBalanceSchemaType = typeof GetBalanceInputSchema;
 export type GetBalanceArgumentsType = z.infer<GetBalanceSchemaType>;
 
 export type GetBalanceResultBodyType = {
-  balance: bigint;
+  balance: number;
 };
 
 export type GetBalanceActionResultType =

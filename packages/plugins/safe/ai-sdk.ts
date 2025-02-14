@@ -2,7 +2,7 @@ import { Tool, tool } from 'ai';
 
 import { SafeWalletkit } from './safe-walletkit';
 
-import { getAllSafeActions, INVOKE_ACTIONS } from './actions';
+import { getAllSafeActions } from './actions';
 
 import { z } from 'zod';
 import type {
@@ -72,11 +72,11 @@ export const invokeTool = <
   });
 };
 
-export const invokeTools = () =>
-  INVOKE_ACTIONS.reduce(
-    (acc, action) => {
-      acc[action.name] = invokeTool(action);
-      return acc;
-    },
-    {} as Record<string, Tool>
-  );
+// export const invokeTools = () =>
+//   INVOKE_ACTIONS.reduce(
+//     (acc, action) => {
+//       acc[action.name] = invokeTool(action);
+//       return acc;
+//     },
+//     {} as Record<string, Tool>
+//   );

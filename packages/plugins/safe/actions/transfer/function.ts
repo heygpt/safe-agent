@@ -1,7 +1,7 @@
 import SafeApiKit from '@safe-global/api-kit';
 import Safe from '@safe-global/protocol-kit';
 import { MetaTransactionData, OperationType } from '@safe-global/types-kit';
-import { Hex, isAddress } from 'viem';
+import { Hex, isAddress, parseEther } from 'viem';
 import { addressValidation, networkMappings } from '../../helpers/helper';
 import type { TransferActionResultType, TransferArgumentsType } from './types';
 
@@ -26,9 +26,10 @@ export async function transfer(
       chain
     );
 
+    const parsedAmount = parseEther(args.amount.toString());
     const safeTransactionData: MetaTransactionData = {
       to: args.recipient,
-      value: args.amount.toString(),
+      value: parsedAmount.toString(),
       data: '0x',
       operation: OperationType.Call,
     };
@@ -37,7 +38,7 @@ export async function transfer(
       transactions: [safeTransactionData],
     });
     const safeTxHash = await wallet.getTransactionHash(tx);
-    const sig = await wallet.signHash(safeTxHash);
+    const sig = await wallet?.signHash(safeTxHash);
 
     const apiKit = new SafeApiKit({
       chainId: BigInt(chain.id),
@@ -53,12 +54,13 @@ export async function transfer(
     return {
       message: `A transfer transaction has been proposed and is awaiting approval.`,
       body: {
-        transactionHash: safeTxHash,
+        safeTransactionHash: safeTxHash,
         signature: sig,
         symbol: 'ETH',
       },
     };
   } catch (error) {
+    console.log('error:::', error);
     return {
       message: `Error transferring the asset: ${error}`,
     };

@@ -6,7 +6,7 @@ import { GET_TOKEN_ADDRESS_PROMPT } from './prompt';
 import type { SafeAction } from '../types';
 import type { GetTokenAddressResultBodyType } from './types';
 
-export class SolanaGetTokenAddressAction
+export class GetTokenAddressAction
   implements
     SafeAction<
       typeof GetTokenAddressArgumentsSchema,

@@ -8,7 +8,7 @@ import {
   polygon,
 } from 'viem/chains';
 
-export const BIRDEYE_CHAIN_MAP = {
+export const BIRDEYE_CHAIN_MAP: Record<number, string> = {
   [mainnet.id]: 'ethereum',
   [arbitrum.id]: 'arbitrum',
   [avalanche.id]: 'avalanche',

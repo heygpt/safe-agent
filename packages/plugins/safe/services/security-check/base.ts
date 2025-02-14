@@ -1,5 +1,3 @@
-import { BaseResponse } from './types';
-
 export const querySecurityChecks = async <T>(
   endpoint: string,
   params?: Record<string, string | number>
@@ -31,11 +29,6 @@ export const querySecurityChecks = async <T>(
     throw new Error(`Security checks API error: ${response.status}`);
   }
 
-  const data: BaseResponse<T> = await response.json();
-
-  if (!data.success) {
-    throw new Error(`Security checks API error`);
-  }
-
-  return data.data;
+  const data = await response.json();
+  return data;
 };

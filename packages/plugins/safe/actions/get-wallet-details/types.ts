@@ -9,6 +9,8 @@ export type GetWalletDetailsArgumentsType = z.infer<GetWalletDetailsSchemaType>;
 
 export type GetWalletDetailsResultBodyType = {
   address: string;
+  owners: string[];
+  threshold: number;
 };
 
 export type GetWalletDetailsActionResultType =

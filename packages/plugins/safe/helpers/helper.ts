@@ -1,4 +1,4 @@
-import { Chain, createPublicClient, Hex, http } from 'viem';
+import { Chain, createPublicClient, fallback, Hex, http } from 'viem';
 import {
   arbitrum,
   arbitrumSepolia,
@@ -23,7 +23,12 @@ export async function isContractAddress(address: Hex, chain: Chain) {
   try {
     const client = createPublicClient({
       chain,
-      transport: http(),
+      transport: fallback([
+        http(
+          'https://base-sepolia.g.alchemy.com/v2/1LXB66nxkdRrN6mqwi4MturNJHwe-npq'
+        ),
+        http(),
+      ]),
     });
 
     const bytecode = await client.getCode({ address });

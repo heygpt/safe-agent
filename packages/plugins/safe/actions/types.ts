@@ -37,6 +37,5 @@ export interface InvokeAction<
 
 export * from './get-balance/types';
 export * from './get-wallet-details/types';
-export * from './invoke-agent/types';
 export * from './trade/types';
 export * from './transfer/types';

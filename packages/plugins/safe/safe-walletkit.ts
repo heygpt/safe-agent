@@ -1,7 +1,7 @@
 import Safe from '@safe-global/protocol-kit';
-import crypto from 'crypto';
+
 import { type Chain, Hex } from 'viem';
-import { baseSepolia } from 'viem/chains';
+import { sepolia } from 'viem/chains';
 import { z } from 'zod';
 import {
   SafeAction,
@@ -13,9 +13,10 @@ import {
  * Configuration options for the Safe Walletkit
  */
 interface SafeWalletkitOptions {
-  safeAddress: Hex;
+  wallet: Safe;
+  chain: Chain;
+  safeAddress?: Hex;
   walletId?: string;
-  chain?: Chain;
 }
 
 class SafeWalletError extends Error {
@@ -29,22 +30,29 @@ class SafeWalletError extends Error {
  * Safe Walletkit
  */
 export class SafeWalletkit {
-  private wallet: Safe;
+  private wallet: Safe | undefined;
   private chain: Chain;
-  private safeAddress: Hex;
+  private safeAddress?: Hex;
+  private walletId?: string;
 
   /**
    * Initializes a new Safe Walletkit instance
    *
    * @param config - Configuration options for the Safe Walletkit
    */
-  public constructor({ walletId, chain, safeAddress }: SafeWalletkitOptions) {
-    if (!walletId) {
-      throw new Error('walletId is required but not provided');
-    }
-
-    this.chain = chain || baseSepolia;
+  public constructor({
+    walletId,
+    chain,
+    safeAddress,
+    wallet,
+  }: SafeWalletkitOptions) {
+    // if (!walletId) {
+    //   throw new Error('walletId is required but not provided');
+    // }
+    this.walletId = walletId;
+    this.chain = chain || sepolia;
     this.safeAddress = safeAddress;
+    this.wallet = wallet;
   }
 
   /**
@@ -57,34 +65,10 @@ export class SafeWalletkit {
   public static async configureWithWallet(
     config: SafeWalletkitOptions
   ): Promise<SafeWalletkit> {
-    const walletkit = new SafeWalletkit(config);
-
-    const { PRIVY_AUTHORIZATION_KEY } = process.env;
-    if (!PRIVY_AUTHORIZATION_KEY) {
-      throw new Error('PRIVY_AUTHORIZATION_KEY is not set');
-    }
-
-    const privateKeyAsString = PRIVY_AUTHORIZATION_KEY?.replace(
-      'wallet-auth:',
-      ''
-    );
-    const privateKeyAsPem = `-----BEGIN PRIVATE KEY-----\n${privateKeyAsString}\n-----END PRIVATE KEY-----`;
-    const privateKey = crypto.createPrivateKey({
-      key: privateKeyAsPem,
-      format: 'pem',
-    });
-    const privateKeyString = privateKey.export({
-      type: 'pkcs8',
-      format: 'pem',
-    });
+    let walletkit: SafeWalletkit;
 
     try {
-      const preExistingSafe = await Safe.init({
-        provider: walletkit.chain.rpcUrls.default.http[0],
-        signer: privateKeyString as string,
-        safeAddress: walletkit.safeAddress,
-      });
-      walletkit.wallet = preExistingSafe;
+      walletkit = new SafeWalletkit(config);
     } catch (error) {
       throw new SafeWalletError(
         `Failed to initialize Safe: ${error instanceof Error ? error.message : String(error)}`

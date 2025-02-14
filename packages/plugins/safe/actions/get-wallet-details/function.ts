@@ -18,11 +18,19 @@ export async function getWalletDetails(
   _: GetWalletDetailsArgumentsType
 ): Promise<SafeActionResult<GetWalletDetailsResultBodyType>> {
   try {
-    const defaultAddress = await wallet.getAddress();
+    const [defaultAddress, chainId, threshold, owners] = await Promise.all([
+      wallet.getAddress(),
+      wallet.getChainId(),
+      wallet.getThreshold(),
+      wallet.getOwners(),
+    ]);
+
     return {
-      message: `Wallet: ${wallet.getOnchainIdentifier()} on network: ${wallet.getChainId()} has ${wallet.getThreshold()} thresholds with default address: ${defaultAddress}`,
+      message: `Wallet: ${defaultAddress} on network: ${chainId} has ${threshold} thresholds.`,
       body: {
         address: defaultAddress,
+        owners,
+        threshold,
       },
     };
   } catch (error) {

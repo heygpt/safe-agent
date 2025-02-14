@@ -1,6 +1,5 @@
 export * from './base-response';
 export * from './ohlcv';
-export * from './portfolio';
 export * from './price';
 export * from './search';
 export * from './token-metadata';
