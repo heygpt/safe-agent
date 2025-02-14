@@ -1,9 +1,9 @@
 'use client';
 
+import { usePrivy } from '@privy-io/react-auth';
 import { CornerDownRight } from 'lucide-react';
 import React, { createContext, useEffect, useRef } from 'react';
 import Textarea from 'react-textarea-autosize';
-import { useAccount } from 'wagmi';
 import { Button, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui';
 import { useChat } from '@/contexts/chat';
 import { useEnterSubmit } from '@/hooks/useEnterSubmit';
@@ -12,7 +12,7 @@ import { cn } from '@/utils/cn';
 const FocusContext = createContext<(() => void) | null>(null);
 
 const ChatInput: React.FC = () => {
-  const { address } = useAccount();
+  const { user } = usePrivy();
 
   const { input, setInput, onSubmit, isLoading, inputDisabledMessage } = useChat();
 
@@ -61,7 +61,7 @@ const ChatInput: React.FC = () => {
             onChange={e => {
               setInput(e.target.value);
             }}
-            disabled={isLoading || !address || inputDisabledMessage !== ''}
+            disabled={isLoading || !user || inputDisabledMessage !== ''}
             autoFocus
           />
         </OptionalTooltip>
@@ -73,7 +73,7 @@ const ChatInput: React.FC = () => {
                 <Button
                   type="submit"
                   size="icon"
-                  disabled={input.trim() === '' || isLoading || !address}
+                  disabled={input.trim() === '' || isLoading || !user}
                   variant="ghost"
                   className="h-8 w-8"
                 >

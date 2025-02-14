@@ -13,7 +13,7 @@ const useBoundStore = create<Slices>()(
         ...createApplicationSlice(...a),
       })),
       {
-        name: process.env.NODE_ENV === 'production' ? 'aa' : 'aa-dev',
+        name: process.env.NODE_ENV === 'production' ? 'safe-agent' : 'safe-agent-dev',
       },
     ),
   ),

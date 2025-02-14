@@ -6,6 +6,7 @@ export * from './button';
 export * from './card';
 export * from './collapsible';
 export * from './icon';
+export * from './login-button';
 export * from './logo';
 export * from './markdown';
 export * from './tooltip';

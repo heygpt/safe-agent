@@ -12,10 +12,10 @@ const EmptyChat: React.FC = () => {
           <Logo className="h-20 w-20" />
           <div className="flex flex-col gap-1">
             <h1 className="text-center text-2xl font-semibold">
-              How can <span className="inline font-bold text-brand-600">AA</span> help you?
+              How can <span className="inline font-bold text-brand-600">I</span> help you?
             </h1>
             <p className="text-center text-sm text-neutral-600 dark:text-neutral-400">
-              Orchestrate an automated DeFi agent powered by AgentKit to act on Base.
+              Your Safe Copilot in Web3 – Transact with Confidence.
             </p>
           </div>
         </div>

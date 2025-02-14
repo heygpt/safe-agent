@@ -1,4 +1,3 @@
-import '@coinbase/onchainkit/styles.css';
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import OnchainProviders from '@/components/OnchainProviders';
@@ -15,10 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  applicationName: 'Automatic Agent',
-  title: 'Automatic Agent',
-  description:
-    'Your secure, dedicated on-chain automation agent for seamless blockchain interactions.',
+  applicationName: 'Safe Agent',
+  title: 'Safe Agent',
+  description: 'Your Safe Copilot in Web3 – Transact with Confidence.',
   icons: {
     icon: '/images/android-chrome-512x512.png',
     shortcut: '/images/favicon.ico',

@@ -11,7 +11,7 @@ export const Logo: React.FC<Props> = ({ className }) => {
     <div className="flex items-center gap-2">
       <Image
         src="/logo.png"
-        alt="AA Logo"
+        alt="Safe Agent Logo"
         width={100}
         height={100}
         className={cn('h-10 w-10', className)}

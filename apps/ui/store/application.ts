@@ -7,6 +7,22 @@ const createApplicationSlice: StateCreator<ApplicationSlice, [], [], Application
   showGlobalLoading: false,
   chain: DEFAULT_CHAIN,
   chatId: null,
+  safeWallet: null,
+  serverWallet: null,
+
+  setServerWallet: serverWallet =>
+    set(
+      produce(state => {
+        state.serverWallet = serverWallet;
+      }),
+    ),
+
+  setSafeWallet: safeWallet =>
+    set(
+      produce(state => {
+        state.safeWallet = safeWallet;
+      }),
+    ),
 
   setGlobalLoading: show =>
     set(
@@ -37,6 +53,8 @@ const createApplicationSlice: StateCreator<ApplicationSlice, [], [], Application
         state.hasPermission = undefined;
         state.chain = DEFAULT_CHAIN;
         state.chatId = null;
+        state.safeWallet = null;
+        state.serverWallet = null;
       }),
     ),
 });

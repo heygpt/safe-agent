@@ -23,7 +23,7 @@ const Messages: React.FC<Props> = ({ messages, messageClassName }) => {
 
   return (
     <div
-      className="no-scrollbar flex h-0 w-full max-w-full flex-1 flex-col overflow-y-auto"
+      className="no-scrollbar flex h-0 w-full max-w-full flex-1 flex-col overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       ref={scrollRef}
     >
       <div className="messages-container" ref={messagesRef}>

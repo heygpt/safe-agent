@@ -47,7 +47,9 @@ const ToolCard = <ActionResultBodyType, ActionArgsType>({
 
   return (
     <div className={cn('flex w-fit flex-col gap-2', className)}>
-      <div className={cn('flex items-center gap-2', prevToolAgent === agentName && 'hidden')}>
+      <div
+        className={cn('flex hidden items-center gap-2', prevToolAgent === agentName && 'hidden')}
+      >
         {tool.state === 'result' ? (
           tool.result.body ? (
             <Icon name={agentIcon} className="h-4 w-4 text-brand-600 dark:text-brand-600" />

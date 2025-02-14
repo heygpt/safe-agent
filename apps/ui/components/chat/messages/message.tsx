@@ -1,9 +1,9 @@
 'use client';
 
+import { usePrivy } from '@privy-io/react-auth';
 import React from 'react';
 import type { Message } from 'ai';
 import Link from 'next/link';
-import { useAccount } from 'wagmi';
 import { Avatar, AvatarFallback, AvatarImage, Icon, Logo, Markdown } from '@/components/ui';
 import { cn } from '@/utils/cn';
 import ToolInvocation from './tools';
@@ -17,7 +17,7 @@ interface Props {
 }
 
 const Message: React.FC<Props> = ({ message, className, previousMessage, nextMessage }) => {
-  const { address } = useAccount();
+  const { user } = usePrivy();
 
   const isUser = message.role === 'user';
 
@@ -56,7 +56,7 @@ const Message: React.FC<Props> = ({ message, className, previousMessage, nextMes
               <AvatarFallback>
                 <Icon name="User" className="h-4 w-4 md:h-6 md:w-6" />
               </AvatarFallback>
-              {address && <AvatarImage />}
+              {user && <AvatarImage />}
             </Avatar>
           ) : (
             <Logo className="h-10 w-10" />
@@ -70,7 +70,7 @@ const Message: React.FC<Props> = ({ message, className, previousMessage, nextMes
               : 'text-brand-600 dark:text-brand-600',
           )}
         >
-          {message.role === 'user' ? 'You' : 'AA'}
+          {message.role === 'user' ? 'You' : 'Safe Agent'}
         </p>
       </div>
       <div className="flex w-full max-w-full flex-col gap-2 overflow-hidden pt-2 md:w-0 md:flex-1">

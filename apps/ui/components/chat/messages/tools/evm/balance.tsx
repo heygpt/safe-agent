@@ -18,7 +18,7 @@ const GetBalance: React.FC<Props> = ({ tool, prevToolAgent }) => {
       loadingText={`Getting ${tool.args.tokenAddress || 'ETH'} Balance...`}
       result={{
         heading: (result: BalanceResultType) =>
-          result.body?.token ? `Fetched ${result.body.token} Balance` : `Failed to fetch balance`,
+          result.body?.balance ? `Fetched ETH Balance` : `Failed to fetch balance`,
         body: (result: BalanceResultType) =>
           result.body ? (
             <TokenBalance

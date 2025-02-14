@@ -1,6 +1,6 @@
+// @ts-nocheck
 import { NextRequest, NextResponse } from 'next/server';
 import { SecretVaultWrapper } from 'nillion-sv-wrappers';
-// @ts-ignore
 import { orgConfig } from '@/configs/nillion';
 
 interface Message {
