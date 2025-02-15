@@ -10,6 +10,7 @@ export type TradeArgumentsType = z.infer<TradeSchemaType>;
 export type TradeResultBodyType = {
   safeTransactionHash: string;
   amountOut: number;
+  symbolOut?: string;
 };
 
 export type TradeActionResultType = SafeActionResult<TradeResultBodyType>;

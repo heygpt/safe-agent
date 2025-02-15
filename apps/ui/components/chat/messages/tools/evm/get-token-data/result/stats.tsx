@@ -3,12 +3,17 @@
 import React from 'react';
 import { Card } from '@/components/ui';
 import type { TokenOverview } from '@/types/token-overview';
+import { isEmpty } from '@/utils/helpers';
 
 interface Props {
   token: TokenOverview;
 }
 
 const Stats: React.FC<Props> = ({ token }) => {
+  if (isEmpty(token)) {
+    return '';
+  }
+
   return (
     <Card className="flex flex-col gap-2 p-2">
       <h2 className="text-lg font-semibold">Market Stats</h2>

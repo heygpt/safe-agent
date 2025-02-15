@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import type { GetTokenDataResultBodyType } from '@/types/agent';
+import { GetTokenDataResultBodyType } from '@safe-agent/safe/actions/get-token-data/types';
 import GetTokenDataResultHeading from './heading';
 import Stats from './stats';
 

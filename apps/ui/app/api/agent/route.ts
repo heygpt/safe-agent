@@ -14,11 +14,11 @@ export const POST = async (req: NextRequest) => {
   }
 
   try {
-    const { PRIVATE_KEY, RPC_URL } = process.env;
+    const { AGENT_PRIVATE_KEY, RPC_URL } = process.env;
 
     const existingSafe = await Safe.init({
       provider: RPC_URL ?? DEFAULT_CHAIN.rpcUrls.default.http[0],
-      signer: PRIVATE_KEY,
+      signer: AGENT_PRIVATE_KEY,
       safeAddress: safeWallet,
     });
 
@@ -35,7 +35,7 @@ export const POST = async (req: NextRequest) => {
       model: azure('gpt-4o-mini'),
       tools: safeTools(agentkit),
       messages,
-      maxSteps: 10,
+      // maxSteps: 10,
     });
 
     return result.toDataStreamResponse();

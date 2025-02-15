@@ -6,12 +6,11 @@ import {
   GET_TOKEN_ADDRESS_NAME,
   GET_TOKEN_DATA_NAME,
   GET_WALLET_DETAILS_NAME,
+  TRADE_NAME,
   TRANSFER_NAME,
 } from '@safe-agent/safe';
 import type { ToolInvocation as ToolInvocationType } from 'ai';
-import { Balance, GetTokenAddress, GetTokenData } from './evm';
-import GetWalletAddress from './evm/get-wallet-address';
-import Transfer from './evm/transfer';
+import { Balance, GetTokenAddress, GetTokenData, GetWalletAddress, Trade, Transfer } from './evm';
 
 interface Props {
   tool: ToolInvocationType;
@@ -30,6 +29,8 @@ const ToolInvocation: React.FC<Props> = ({ tool, prevToolAgent }) => {
       return <GetTokenAddress tool={tool} prevToolAgent={prevToolAgent} />;
     case TRANSFER_NAME:
       return <Transfer tool={tool} prevToolAgent={prevToolAgent} />;
+    case TRADE_NAME:
+      return <Trade tool={tool} prevToolAgent={prevToolAgent} />;
     default:
       return <pre className="whitespace-pre-wrap">{JSON.stringify(tool, null, 2)}</pre>;
   }

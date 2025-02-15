@@ -1,3 +1,4 @@
+import { Network } from 'alchemy-sdk';
 import { Chain, createPublicClient, fallback, Hex, http } from 'viem';
 import {
   arbitrum,
@@ -19,16 +20,19 @@ export const networkMappings: Record<number, Chain> = {
   [arbitrumSepolia.id]: arbitrumSepolia,
 };
 
+export const alchemyNetworkMappings: Record<number, Network> = {
+  [mainnet.id]: Network.ETH_MAINNET,
+  [base.id]: Network.BASE_MAINNET,
+  [arbitrum.id]: Network.ARB_MAINNET,
+  [sepolia.id]: Network.ETH_SEPOLIA,
+  [baseSepolia.id]: Network.BASE_SEPOLIA,
+};
+
 export async function isContractAddress(address: Hex, chain: Chain) {
   try {
     const client = createPublicClient({
       chain,
-      transport: fallback([
-        http(
-          'https://base-sepolia.g.alchemy.com/v2/1LXB66nxkdRrN6mqwi4MturNJHwe-npq'
-        ),
-        http(),
-      ]),
+      transport: fallback([http(process.env.RPC_URL || ''), http()]),
     });
 
     const bytecode = await client.getCode({ address });
@@ -43,7 +47,9 @@ export function isAddressMalicious(checkResult: Check) {
   return (
     +checkResult.result.sanctioned === 1 ||
     +checkResult.result.cybercrime === 1 ||
-    +checkResult.result.fake_token === 1
+    +checkResult.result.fake_token === 1 ||
+    +checkResult.result.honeypot_related_address === 1 ||
+    +checkResult.result.financial_crime === 1
   );
 }
 
@@ -57,7 +63,8 @@ export async function addressValidation(
     +checkResult.result.sanctioned === 1 ||
     +checkResult.result.cybercrime === 1 ||
     +checkResult.result.fake_token === 1 ||
-    +checkResult.result.honeypot_related_address === 1
+    +checkResult.result.honeypot_related_address === 1 ||
+    +checkResult.result.financial_crime === 1
   ) {
     throw new Error(
       `Heads up! This recipient address has been marked as malicious. Avoid interactions to protect your assets. ${JSON.stringify(checkResult.result)}`

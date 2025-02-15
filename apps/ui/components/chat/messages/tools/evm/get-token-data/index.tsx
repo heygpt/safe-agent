@@ -1,6 +1,6 @@
 import React from 'react';
+import { GetTokenDataResultType } from '@safe-agent/safe/actions/get-token-data/types';
 import type { ToolInvocation } from 'ai';
-import { BaseActionResult, GetTokenDataResultBodyType } from '@/types/agent';
 import ToolCard from '../../tool-card';
 import GetTokenDataResult from './result';
 
@@ -8,8 +8,6 @@ interface Props {
   tool: ToolInvocation;
   prevToolAgent?: string;
 }
-
-type GetTokenDataResultType = BaseActionResult<GetTokenDataResultBodyType>;
 
 const GetTokenData: React.FC<Props> = ({ tool, prevToolAgent }) => {
   return (

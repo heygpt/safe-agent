@@ -157,3 +157,5 @@ export const getErrorMessage = (err: any) => {
     return 'Something went wrong!';
   }
 };
+
+export const isEmpty = (obj: object) => Object.keys(obj).length === 0;

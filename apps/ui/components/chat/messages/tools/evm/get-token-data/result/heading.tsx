@@ -5,12 +5,17 @@ import Address from '@/components/Address';
 import { Card } from '@/components/ui';
 import type { TokenOverview } from '@/types/token-overview';
 import { cn } from '@/utils/cn';
+import { isEmpty } from '@/utils/helpers';
 
 interface Props {
   token: TokenOverview;
 }
 
 const GetTokenDataResultHeading: React.FC<Props> = ({ token }) => {
+  if (isEmpty(token)) {
+    return '';
+  }
+
   return (
     <Card className="flex flex-col justify-between gap-4 p-2 md:flex-row">
       <div className="flex items-center gap-2">
@@ -23,7 +28,7 @@ const GetTokenDataResultHeading: React.FC<Props> = ({ token }) => {
             <Address address={token.address} />
           </div>
           <p className="flex items-center gap-1 text-sm font-semibold">
-            ${token.price.toLocaleString(undefined, { maximumFractionDigits: 5 })}
+            ${token.price?.toLocaleString(undefined, { maximumFractionDigits: 5 })}
             {token.priceChange24hPercent && (
               <span
                 className={cn(

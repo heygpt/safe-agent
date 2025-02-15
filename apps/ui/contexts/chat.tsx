@@ -12,10 +12,10 @@ import React, {
   useState,
 } from 'react';
 import { useShallow } from 'zustand/react/shallow';
+import SafeApiKit from '@safe-global/api-kit';
 import Safe, { Eip1193Provider } from '@safe-global/protocol-kit';
 import { v4 as uuidv4 } from 'uuid';
 import { Hex, createPublicClient, createWalletClient, custom, fallback, http } from 'viem';
-import { Button } from '@/components/ui';
 import useBoundStore from '@/store';
 import { ACTION_NAMES, DEFAULT_CHAIN } from '@/utils/constants';
 
@@ -88,6 +88,16 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     if (!wallet) return;
     console.log('creating safe....');
     try {
+      const apiKit = new SafeApiKit({
+        chainId: BigInt(DEFAULT_CHAIN.id),
+      });
+      const safeWallets = await apiKit.getSafesByOwner(wallet.address);
+      const safes = safeWallets.safes;
+      if (safes.length > 0) {
+        setSafeWallet(safes[safes.length - 1] as Hex);
+        return;
+      }
+
       await wallet.switchChain(DEFAULT_CHAIN.id);
       const provider = await wallet.getEthereumProvider();
       const walletClient = createWalletClient({
@@ -96,26 +106,12 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
         transport: custom(provider),
       });
 
-      // let sw: ServerWallet | null = serverWallet;
-      // if (!sw) {
-      //   const res = await fetch('/api/privy', {
-      //     method: 'POST',
-      //   });
-      //   if (!res.ok) {
-      //     throw new Error(`Privy API error: ${res.status}`);
-      //   }
-      //   sw = await res.json();
-      //   setServerWallet(sw);
-      // }
-      // if (!sw) {
-      //   throw new Error('Server wallet not found');
-      // }
       const safekit = await Safe.init({
         provider: walletClient as Eip1193Provider,
         signer: wallet.address,
         predictedSafe: {
           safeAccountConfig: {
-            owners: [wallet.address, '0xc594eE276A8f58bCE8EA1D9cfA8c4e02e4ba62A8'],
+            owners: [wallet.address, process.env.NEXT_PUBLIC_AGENT_WALLET_ADDRESS as Hex],
             threshold: 2,
           },
           safeDeploymentConfig: {
@@ -166,7 +162,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
       //   await logout();
       // }
     }
-  }, [wallet, serverWallet, saltNonce, setServerWallet, setSafeWallet]);
+  }, [wallet, saltNonce, setSafeWallet]);
 
   useEffect(() => {
     if (!safeWallet) {
@@ -319,13 +315,6 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
             : inputDisabledMessage,
       }}
     >
-      <Button
-        onClick={() => {
-          logout();
-        }}
-      >
-        Logout
-      </Button>
       {children}
     </ChatContext.Provider>
   );

@@ -1,5 +1,5 @@
 import Safe from '@safe-global/protocol-kit';
-
+import { TokenBalance } from 'alchemy-sdk';
 import type { SafeActionResult } from '../types';
 
 import type {
@@ -8,7 +8,7 @@ import type {
 } from './types';
 
 /**
- * Gets ETH balance for all addresses in the wallet.
+ * Gets token balances in the safe wallet.
  *
  * @param wallet - The wallet to get the balance for.
  * @param _args - The input arguments for the action.
@@ -19,11 +19,44 @@ export async function getBalance(
   _args: GetBalanceArgumentsType
 ): Promise<SafeActionResult<GetBalanceResultBodyType>> {
   try {
-    const balance = await wallet.getBalance();
+    const [safeAddress, balance] = await Promise.all([
+      wallet.getAddress(),
+      wallet.getBalance(),
+    ]);
+
+    let tokenBalances: TokenBalance[] = [];
+    try {
+      const myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/json');
+
+      const raw = JSON.stringify({
+        id: 1,
+        jsonrpc: '2.0',
+        method: 'alchemy_getTokenBalances',
+        params: [safeAddress],
+      });
+
+      const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+      };
+
+      const response = await fetch(
+        `https://arb-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+        requestOptions
+      );
+      const result = await response.json();
+      tokenBalances = result.result?.tokenBalances ?? [];
+    } catch (error) {
+      console.log('Get token balances error:::', error);
+    }
+
     return {
-      message: `Balances for wallet ${wallet.getOnchainIdentifier()}:\n${balance}`,
+      message: `ETH balances for wallet ${wallet.getOnchainIdentifier()}:\n${balance}`,
       body: {
-        balance: Number(balance),
+        ethBalance: Number(balance),
+        tokenBalances: tokenBalances,
       },
     };
   } catch (error) {

@@ -11,11 +11,10 @@ const EmptyChat: React.FC = () => {
         <div className="flex flex-col items-center justify-center gap-4">
           <Logo className="h-20 w-20" />
           <div className="flex flex-col gap-1">
-            <h1 className="text-center text-2xl font-semibold">
-              How can <span className="inline font-bold text-brand-600">I</span> help you?
-            </h1>
+            <h1 className="text-center text-2xl font-semibold">How can I help you today?</h1>
             <p className="text-center text-sm text-neutral-600 dark:text-neutral-400">
-              Your Safe Copilot in Web3 – Transact with Confidence.
+              Your <span className="inline font-bold text-brand-600">Safe Copilot</span> in Web3 –
+              Transact with <span className="inline font-bold text-brand-600">Confidence</span>.
             </p>
           </div>
         </div>
